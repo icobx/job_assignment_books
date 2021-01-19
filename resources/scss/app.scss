@@ -1,0 +1,11 @@
+@import '~bootstrap/scss/bootstrap.scss';
+@import '~datatables/media/css/jquery.dataTables';
+
+
+.section {
+    padding: 80px 0;
+
+    @media screen and (max-width: 767px) {
+        padding: 40px 0;
+    }
+}

@@ -13,6 +13,16 @@
         "axios": "^0.21",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
-        "postcss": "^8.1.14"
+        "postcss": "^8.1.14",
+        "resolve-url-loader": "^3.1.0",
+        "sass-loader": "^8.0.2"
+    },
+    "dependencies": {
+        "bootstrap": "^4.5.3",
+        "bootstrap-table": "^1.18.1",
+        "datatables": "^1.10.18",
+        "jquery": "^3.5.1",
+        "popper.js": "^1.16.1",
+        "sass": "^1.32.4"
     }
 }
