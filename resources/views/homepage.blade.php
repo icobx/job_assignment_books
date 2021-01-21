@@ -8,7 +8,6 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <!-- <link href=https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.20/css/dataTables.bootstrap4.min.css rel=stylesheet> -->
 </head>
 
 <body>
@@ -28,27 +27,27 @@
                     <h2 class="text-center">formular</h2>
                 </div>
             </div>
-            <form class="row gy-4 gx-2" method="post" action="#">
+            <form class="row gy-4 gx-2" id="book-form" method="post" action="{{ route('book-store') }}">
                 @csrf
                 <div class="col-12">
                     <div class="test">
-                        <label for="inputBookTitle" class="form-label mt-3">Názov knihy</label>
-                        <input type="text" class="form-control" id="inputBookTitle" placeholder="Vlastnou hlavou">
+                        <label for="title" class="form-label mt-3">Názov knihy</label>
+                        <input type="text" class="form-control" name="title" id="title" placeholder="Vlastnou hlavou" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="test">
-                        <label for="inputIsbn" class="form-label mt-3">ISBN</label>
-                        <input type="text" class="form-control" id="inputIsbn">
+                        <label for="isbn" class="form-label mt-3">ISBN</label>
+                        <input type="text" class="form-control" name="isbn" id="isbn" required>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label for="inputPrice" class="form-label mt-3">Cena</label>
-                    <input type="text" class="form-control" id="inputPrice">
+                    <label for="price" class="form-label mt-3">Cena</label>
+                    <input type="text" class="form-control" name="price" id="price" required>
                 </div>
                 <div class="col-md-6">
-                    <label for="inputCategory" class="form-label mt-3">Kategória</label>
-                    <select class="form-select form-control" aria-label="Default select example">
+                    <label for="category_id" class="form-label mt-3">Kategória</label>
+                    <select class="form-select form-control" name="category_id" aria-label="Default select example" required>
                         <option selected>Vyberte kategóriu</option>
                         @foreach($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -56,10 +55,8 @@
                     </select>
                 </div>
                 <div class="col-md-6">
-                    <div class="test">
-                        <label for="inputAuthor" class="form-label mt-3">Autor</label>
-                        <input type="text" class="form-control" id="inputAuthor" data-autocomplete-url="{{ route('author-autocomplete') }}">
-                    </div>
+                    <label for="author" class="form-label mt-3">Autor</label>
+                    <input type="text" class="form-control" name="author" id="author" data-autocomplete="{{ route('author-autocomplete') }}" autocomplete="off" required>
                 </div>
 
                 <div class="col-sm-6 offset-sm-6">

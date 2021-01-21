@@ -18,10 +18,12 @@
         "sass-loader": "^8.0.2"
     },
     "dependencies": {
+        "autocomplete-js": "^2.7.1",
         "bootstrap": "^4.5.3",
         "bootstrap-table": "^1.18.1",
         "datatables": "^1.10.18",
         "jquery": "^3.5.1",
+        "jquery-validation": "^1.19.3",
         "popper.js": "^1.16.1",
         "sass": "^1.32.4"
     }

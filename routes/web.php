@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', [BookController::class, 'index']);
-// Route::get('/', [CategoryController::class, 'index']);
+Route::get('/',         [BookController::class, 'index']);
+Route::post('/store',   [BookController::class, 'store'])->name("book-store");
+
 Route::get('author/autocomplete', [AuthorController::class, 'autocomplete'])->name('author-autocomplete');

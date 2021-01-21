@@ -1,5 +1,7 @@
+@import '~autocomplete-js/dist/autocomplete';
 @import '~bootstrap/scss/bootstrap.scss';
 @import '~datatables/media/css/jquery.dataTables';
+
 
 
 .section {
@@ -9,3 +11,7 @@
         padding: 40px 0;
     }
 }
+
+input[data-autocomplete] {
+    border: 1px solid #ced4da;
+  }
