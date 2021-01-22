@@ -6,7 +6,7 @@ use App\Models\Author;
 use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
+
 
 class BookController extends Controller
 {
@@ -14,7 +14,6 @@ class BookController extends Controller
     {
         $books = Book::all();
         $categories = Category::all();
-        // dd($books);
 
         return view('Homepage', [
             'books' => $books,
@@ -43,5 +42,17 @@ class BookController extends Controller
         Book::create($validated);
 
         return redirect()->back();
+    }
+
+    public function all()
+    {
+        $books = Book::with('author', 'category')->get();
+
+        return response()->json($books);
+    }
+
+    public function show($id)
+    {
+        return response()->json(Book::with('author', 'category')->find($id));
     }
 }

@@ -3,9 +3,16 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class AuthorSeeder extends Seeder
 {
+    private $authors = [
+        'Joseph Heller',
+        'Jozef Karika',
+        'Mario Puzo',
+        'J.R.R. Tolkien'
+    ];
     /**
      * Run the database seeds.
      *
@@ -13,6 +20,10 @@ class AuthorSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Author::factory(10)->create();
+        foreach ($this->authors as $author) {
+            DB::table('authors')->insert([
+                'name' => $author
+            ]);
+        }
     }
 }

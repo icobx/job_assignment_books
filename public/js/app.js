@@ -2413,8 +2413,11 @@ $(function () {
       orderable: false,
       targets: "no-sort"
     }],
-    aaSorting: [] // prevent auto sort
-
+    aaSorting: [],
+    // prevent auto sort
+    language: {
+      search: "Vyhľadávať v tabuľke:"
+    }
   });
   AutoComplete({
     QueryArg: "term",
@@ -2433,55 +2436,36 @@ $(function () {
       return authors;
     }
   });
+  $("#isbn").on("input", function () {
+    var isbn = $(this).val();
+    $(this).val(isbn.replace(/-/g, ""));
+  }); // isbn soft format validation
 
-  var checksum = function checksum(isbn) {
-    //isbn have to be number or string (composed only of digits or char "X"):
-    isbn = isbn.toString(); //Remove last digit (control digit):
-
-    var number = isbn.slice(0, -1); //Convert number to array (with only digits):
-
-    number = number.split("").map(Number); //Save last digit (control digit):
-
-    var last = isbn.slice(-1);
-    var lastDigit = last !== "X" ? parseInt(last, 10) : "X"; //Algorithm for checksum calculation (digit * position):
-
-    number = number.map(function (digit, index) {
-      return digit * (index + 1);
-    }); //Calculate checksum from array:
-
-    var sum = number.reduce(function (a, b) {
-      return a + b;
-    }, 0); //Validate control digit:
-
-    var controlDigit = sum % 11;
-    return lastDigit === (controlDigit !== 10 ? controlDigit : "X");
-  };
-
-  window.validateIsbn = function (isbn) {
+  var validateIsbn = function validateIsbn(isbn) {
     var PREFIX = /^ISBN(?:-1[03])?:?\x20+/i;
     var ISBN = /^(?:\d{9}[\dXx]|\d{13})$/;
     isbn = isbn.replace(PREFIX, "");
-
-    if (!ISBN.test(isbn)) {
-      return false;
-    }
-
-    return checksum(isbn); //true or false
-  }; //     int CheckISBN(int const digits[10])
-  // {
-  //         int i, s = 0, t = 0;
-  //         for (i = 0; i < 10; i++) {
-  //                 t += digits[i];
-  //                 s += t;
-  //         }
-  //         return s % 11;
-  // }
-
+    return ISBN.test(isbn);
+  };
 
   jQuery.validator.addMethod("validIsbn", function (value, element) {
     return validateIsbn(value);
   }, "Please enter valid ISBN number.");
-  $("#book-form").validate();
+  jQuery.extend(jQuery.validator.messages, {
+    required: "Prosím, zadajte tento údaj.",
+    validIsbn: "Prosím, zadajte správny formát ISBN.",
+    step: "Prosím, zadajte násobok " + $("#price").attr("step") + ".",
+    min: "Prosím, zadajte kladné číslo.",
+    number: "Prosím, zadajte číslo."
+  });
+  $("#book-form").validate({// messages: {
+    //     required: "Názov knihy je povinný údaj.",
+    //     // postcode: {
+    //     //     required: "Field PostCode is required",
+    //     //     minlength: "Field PostCode must contain at least 3 characters",
+    //     // },
+    // },
+  });
 });
 
 /***/ }),

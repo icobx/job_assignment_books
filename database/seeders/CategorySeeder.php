@@ -11,7 +11,8 @@ class CategorySeeder extends Seeder
         'Fantasy',
         'Sci-Fi',
         'Román',
-        'Triler'
+        'Triler',
+        'Beletria'
     ];
 
     /**

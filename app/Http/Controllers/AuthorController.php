@@ -18,9 +18,7 @@ class AuthorController extends Controller
             'term' => ['required', 'string']
         ]);
 
-        $res = Author::select("name")
-            ->where("name", "LIKE", "%{$validated['term']}%")
-            ->get();
+        $res = Author::where("name", "LIKE", "%{$validated['term']}%")->get();
 
         return response()->json($res);
     }

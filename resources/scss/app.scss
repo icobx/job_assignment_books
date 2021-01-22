@@ -2,16 +2,110 @@
 @import '~bootstrap/scss/bootstrap.scss';
 @import '~datatables/media/css/jquery.dataTables';
 
+@import 'variables';
+@import 'table';
+
+
+body {
+    color: $color-text;
+    font-family: $font-family;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: $color-text;
+}
+
+
+.header {
+    padding: 40px 0;
+    color: $color-text;
+    background-color:  $color-accent;
+
+    &__title {
+        font-weight: 500;
+        font-size: 55px;
+        text-transform: uppercase;
+    }
+}
 
 
 .section {
-    padding: 80px 0;
+    padding: 100px 0;
+    position: relative;
 
     @media screen and (max-width: 767px) {
         padding: 40px 0;
+    }
+
+    &__title {
+        font-weight: 500;
+        font-size: 40px;
+        text-transform: uppercase;
+
+        margin-bottom: 1em;
+    }
+
+    &--form {
+        background-color: $color-bg-lighter;
+        z-index: 2;
+
+        padding-bottom: 200px;
+
+        &:after {
+            position: absolute;
+            display: block;
+            content: "";
+            bottom: 0;
+            left: 50%;
+            width: 110vw;
+            min-width: 2500px;
+            height: 250px;
+            background-color :$color-bg;
+            transform: rotate(-2deg) translate(-50%, 50%);
+            z-index: -1;
+        }
+    }
+
+    &--table {
+        background-color: $color-bg;
+        z-index: 2;
+
+        padding-top: 50px;
     }
 }
 
 input[data-autocomplete] {
     border: 1px solid #ced4da;
-  }
+
+    padding: 0.5rem 1rem;
+}
+
+.button-accent {
+    background-color: $color-accent;
+    color: $color-text;
+
+    border: 1px solid $color-accent;
+
+    &:hover {
+        background-color: darken($color-accent, 10%);
+        border-color: darken($color-accent, 10%);
+
+        color: $color-text;
+    }
+}
+
+.table-wrapper {
+    max-width: 100%;
+    overflow: auto;
+}
+
+.table {
+    &__head {
+        background-color: $color-accent;
+        color: $color-text;
+    }
+}
+
+::placeholder {
+    color: lighten(black, 70%) !important;
+}
